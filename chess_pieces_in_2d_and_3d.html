@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"
+  integrity="sha384-AHAnt9ZhGeHIrydA1Kp1L7FN+2UosbF7RQg6C+9Is/a7kDpQ1684C2iH2VWil6r4"
+  crossorigin="anonymous">
+</script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+    <title>Individual Project Dexter Payne</title>
+    <link rel="stylesheet" href="css.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+</head>
+
+    <header>
+        <h1>Group Project: Exploring other pieces and 3D chess</h1>
+    </header>
+
+<section>
+	<h2>Other chess pieces in 2D</h2>
+
+	<p>
+		Rooks are the simplest chess piece to program in order to find challenging and non challenging arrangements so we made a programme for each piece excluding pawns.
+	</p>
+
+    <h3>Program for n rooks:</h3>
+
+	<iframe src="https://trinket.io/embed/python/bfbf42de6aae" width="100%" height="600" frameborder="0" 	marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+</section>
+<section>
+
+    <h3>Program for n bishops:</h3>
+	
+	<iframe src="https://trinket.io/embed/python/00b237f5fc49" width="100%" height="600" frameborder="0" 	marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+</section>
+<section>
+
+    <h3>Program for n queens:</h3>
+
+	<iframe src="https://trinket.io/embed/python/78c25b35e99b" width="100%" height="600" frameborder="0" 	marginwidth="0" marginheight="0" allowfullscreen></iframe>
+	
+</section>
+<section>
+
+    <h3>Program for n kings:</h3>
+
+	<iframe src="https://trinket.io/embed/python/41382c602d41" width="100%" height="600" frameborder="0" 	marginwidth="0" marginheight="0" allowfullscreen></iframe>
+	
+</section>
+<section>
+
+    <h3>Program for n knights:</h3>
+
+	<iframe src="https://trinket.io/embed/python/3700232ac60e" width="100%" height="600" frameborder="0" 	marginwidth="0" marginheight="0" allowfullscreen></iframe>
+	
+</section>
+<section>
+
+<h2><b>Explanation of the code</b></h2>
+    <p>
+		All of these programmes uses the same layout of code, importantly four functions; a function to 	create an empty 8x8 chess board, a function to randomly place n amount of the specific pieces onto the 	chess board, then a function to check the arrangements of the pieces whether or not it is challenging or 	non-challenging and finally a function to repeat the process of these three function r times and count 	the 	amount of challenging and non-challenging arrangements.
+    </p>
+
+    <p>
+		<b>Starting with the explanation of the code for n rooks:</b> We import the random module which is 	later used to randomly place the rooks on the board. Then 4 values are assigned which are n - amount of 	rooks, r - amount of iterations and then the challenging and non-challenging count. Then the function 	chess_board is made which creates an 8x8 grid made of *'s to represent an empty chess board. The next 	function uses a while loop to randomly place rooks up to n amount of times and edits the empty chess board 	to replace the coordinate * with a R for all the coordinates are randomly picked. The rook count only 	increases when it tries to replace a * with a R so no two or more rooks ever take up the same tile. Then 	the arrangement function starts with an empty list to store the coordinates of the n rooks already placed, 	it then checks the board for where the R's are and stores their coordinates. After that it checks if any 	two rooks are in a challenging position by looping through the coordinates of each pair of rooks and 	deciphering whether they share a row or collumn. It does this by seeing if co-ordinates $x1 = x2$ or $y1 = 	y2$ as these represent the row and collumn coordiantes for two rooks being checked. Lastly it stores a 	challenging arrangement as true for the function and non-challenging as false. The last function iterates 	this process r times in which the board is reset then placed with rooks again so each iteration is 	different, it counts and stores the amount of challenging and non-challenging arrangments over r iterations 	too. The last part is not necessary but prints a small table to represent the % result of challenging and 	non-challening arrangements of n rooks to nicely view the results.
+    </p>
+
+    <p>
+		<h2><b>The difference in code for other chess pieces</b></h2> Each piece of code is mostly the 	same and only changes the arrangement function since that is the only thing that changes with other pieces 	since it holds the way the piece can move and if it is therefore in a challenging position to another piece 	of the same type
+    </p>
+    <p>
+		<b>Bishops:</b> The logic behind the movement of bishops is if the positive value of $x1 - x2 = 	y1 - y2$ then it is challenging. This is since if the difference of the x co-ordinates is the same as the 	difference of the y co-ordinates then the two rooks being checked must be sharing the same diagonal line. 
+    </p>
+    <p>
+		<b>Queens:</b> In chess the queen shares the properties of a rook and bishop, so to modify our code 	to find a challenging arrangement between multiple queens we simply combined both conditions of the roo 	kand bishop. Such that if $x1 - x2 = y1 - y2$ or $x1 = x2$ or $y1 = y2$ then it would result in a 	challenging arrangement.
+    </p>
+    <p>
+		<b>Kings:</b> Kings were a little more complex as whilst they can move in any direction similar to 	the queen they are restriced to only being able to move in one direction, this means we could not code it 	to take a direction in which the king can attack another king, so we chose to do it by looking at all the 	kings possible moves since there are only 8. So we started by making a list of all the possible king moves, 	then after the kings co-ordinates have been made it checks whether they are within a single tile of another 	king by checking if the difference in the two kings positions being checked is within the moveset of a 	king; checks if the coordinate $(x1 - x2, y1 - y2)$ is in a kings moveset. 
+    </p>
+    <p>
+		<b>Knights:</b> The knights in chess have a very unique moveset of being able to move in an L 	shape - two squares in one direction and 1 square in a perpendicular direction. so Similarrly to the king, 	we made a list of possible moves the knight can make since again there is only 8 options for it. Then also 	identically to the code for the king it works out the difference in positions of two knights on the board 	as a coordinate using the same equation $(x1 - x2, y1 - y2)$ and then checks if this co-ordinate is also a 	move listed to be a possible knights move, if it is then it results in it being a challenging arrangement.
+    </p>
+    <p>
+		All parts of the code are identical except the arrangement functions. It was made this way with 	functions so that when we made the code for new pieces it would be a very easy process.
+    </p>
+
+</section>
+<section>
+	<h2>Comparing the results of different pieces</h2>
+<body>
+    <main>
+    <p>
+		Without any calculations we can predict which results should be bigger for amount of non-	challenging configurations just by using the different pieces ways of moving. Each piece covers a certain 	amount of tiles on the board in which if another piece is placed there then this becomes a challenging 	position. Every rook will always cover the rest of the row and collumn its in which is 14 squares, a bishop 	covers all squares in both of its diagonals which can range between 7-13 depending where on the board it is 	placed since it covers only 7 in a corner and at most 13 if in one of the centre four squares. A queen is a 	combination of the rook and bishop and none of the squares the rook or bishop can move will never overlap 	so we can add the values to get that the queen covers 21-27 squares based on position. Next the king covers 	8 squares when not on the edge, but covers only 5 or even just 3 when on the edge or in a corner. Lastly 	the knight usually covers 8 similarly to the king in the more inner squares but depending on its position 	near the edge of the board it could possibly only cover 2, 3, 4 or 6 squares.
+    </p>
+    <p>
+		Using this logic it can be easily deciphered that when the same n amount of different types of 	pieces are randomly placed on the board that the queen will have the lowest rate of non-challenging 	positions as there is a higher chance of another queen being placed in a challenging position to a 	different queen. This is followed quite clearly by rooks, then bishops however it is harder to tell between 	knights and kings. But kings have a full range of movement and 8 tiles available to move to in all but the 	outer ring of squares of the board whilst the knight does not have that range in both the outer two rings, 	so it can be predicted - however not confidently, that there would be a lower non-challenging rate of 	kings than knights. 
+    </p>
+
+    <p>
+				We ran the codes for values of n from 2 to 8 to gain a reasonable result for each 	chess piece tested. Here is a table of results for when n = 3:
+    </p>
+
+<table border="1">
+  <tr>
+    <th>Chess piece</th>
+    <th>n</th>
+    <th>non-challenging %</th>
+  </tr>
+  <tr>
+    <td>Rook</td>
+    <td>3</td>
+    <td>44.98%</td>
+  </tr>
+  <tr>
+    <td>Bishop</td>
+    <td>3</td>
+    <td>62.91%</td>
+  </tr>
+  <tr>
+    <td>Queen</td>
+    <td>3</td>
+    <td>22.78%</td>
+  </tr>
+  <tr>
+    <td>King</td>
+    <td>3</td>
+    <td>71.32%</td>
+  </tr>
+  <tr>
+    <td>Knight</td>
+    <td>3</td>
+    <td>76.96%</td>
+  </tr>
+</table>
+
+    <p>
+		These results from our code match the predicted ways each piece should behave in terms of 	arrangements compared to each other. Even down to the king and knight being close but the king having a 	slightly smaller non-challenging rate. These predicted results held for all values of n when put through 	the code. This can be checked as the code is embedded into this webpage.
+    </p>
+</body>
+</section>
+
+<section>
+	<h2>The maths behind the results</h2>
+<body>
+    <main>
+	<p>
+		<b>Rooks:</b> Starting with the easiest probability to calculate since the position of the rook on the board does not change the amount of remaining tiles it covers. In order for n rooks to be placed in a non-challenging arrangement then they must all be placed in a different row and collumn. The first rook must pick n rows of 8 in $\binom{8}{n} = \frac{8!}{n!(8-n)!}$ ways, in the same way it must pick n collumns, so again $\binom{8}{n} = \frac{8!}{n!(8-n)!}$. Then the rooks must be assigned to one of each n rows and collumns so the amount is $n!$. So the total amount of ways to place n non-challenging rooks is the product of choosing n rows, collumns and the amount of ways to arrange the rooks in a non challenging way is: <br>$\frac{8!}{n!(8-n)!}\times\frac{8!}{n!(8-n)!}\times n!$ $ = $ $\frac{(8!)^2}{n!((8-n)!)^2}$. Now to find the % we must divide by the total amount of ways there is to randomly place n rooks on the chess board, since there is 64 squares the total amount of placements is $\binom{64}{n} = \frac{64!}{n!(64-n)!}$. So the % of non-challenging arrangements is $\frac{(8!)^2}{n!((8-n)!)^2}\div \frac{64!}{n!(64-n)!}$ $=$ $\frac{(8!)^2(64-n)!}{64!((8-n)!)^2}\times 100$. Using this equation we checked it with $n = 3$, which resulted in $45.16$% to two decimal places which matches our codes result $+-0.18$%. This shows the code is accurate.
+	</p>
+	<p>
+		<b>Bishops:</b> All the other pieces are different to the rook in the way that it matters where they are placed on the board as in different locations they cover more or less squares on the board. Therefore I worked out the average amount of squares a bishop covers using the sum of the amount of squares that can be seen from a bishop placed on any square on the board, it looks like this: $\frac{(4\times13) + (12\times11) + (20\times9) + (28\times7)}{64} = 8.75$ So we used this number to check the result for $n = 3$. for $n = 3$ the location of the first bishop does not matter, but the second must be in one of the approxamately 55.25 non-challening tiles out of the 63 of them left, then the third must be in one of the approxamately 45.5 non-challenging tiles out of t he remaining 62. The maths looks like: $\frac{55.25}{63}\times \frac{45.5}{62} = 64.36$% which is within 1.4% of the codes output, making it slightly less accurate than the rooks. This is likely due to the way more unpredictable nature of placing random rooks as mentioned as they cover seperate amounts of squares in different places and that makes making a consistent python programme harder than when for a rook if using the same amount of iterations.
+	</p>
+	<p>
+		<b>Queens:</b> The queens are similar to bishops in that the position matters too, the position a queen can move to is simply a combination of a rook and bishop so we can simply add the average tile coverage for rooks and bishops to fing the average tile coverage for a randomly placed queen: $14 + 8.75 = 22.75$. I did the same thing as bishops to check my code by finding the percentage of non-challenging arrangements for $n = 3$. $\frac{41.25}{63}\times \frac{18.5}{62} = 19.54$%. Again this is less accurate compared to the rooks by nearly 3%. This could be showing the python becomes less accurate for more complex pieces or that there is an error in our maths for these more complex pieces.
+	</p>
+	<p>
+		 <b>Kings:</b> The same was done to check 3 kings, where the average amount of moves is $\frac{(36\times 8) + (4\times 3) + (24\times5)}{64} = 6.5625$. There fore the equation for a non-challenging arrangemnt with three kings was $\frac{56.4375}{63}\frac{49.875}{62} = 72.06$%. Which is accurate to the codes calculations by 0.75%. More accurate than the the bishops an queens, suspectedly because a king has more consistent position placesments where it can move into the same number of tiles.
+	</p>
+	<p>
+		<b>Knights</b> Lastly I checked the codes calculations for the knights. The average amount of places a randomly placed knight could move too was 5.25, so the calculation to find the predicted % of non-challenging arrangements of 3 rooks is: $\frac{55.4375}{63}\frac{47.875}{62} = 72.06$% which is within 0.82% of the codes calculations.
+	</p>
+	<p>
+The maths used to find these results shows that the code is less accurate when it comes to peices which have a larger different amount of squares which allows them to take a different number of tiles, more notably the queens and then bishops, but it does affect the kings and the knights too.
+    </main>
+</body>
+</section>
+
+<section>
+	<h2>Chess pieces in 3D</h2>
+
+	<p>
+		We repeated all 5 of these chess pieces but now in a 3D chess board, in which pieces can move through an 8x8x8 grid almost as 8 chess boards have been stacked on top of each other and pieces can pass through it vertically as well as their usual movements on a chess board.
+	</p>
+
+    <h3>Program for n rooks:</h3>
+
+	<iframe src="https://trinket.io/embed/python/7e65be3d5ad0" width="100%" height="600" frameborder="0" 	marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+</section>
+<section>
+
+    <h3>Program for n bishops:</h3>
+	
+	<iframe src="https://trinket.io/embed/python/962b42f8a173" width="100%" height="600" frameborder="0" 	marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+</section>
+<section>
+
+    <h3>Program for n queens:</h3>
+
+	<iframe src="https://trinket.io/embed/python/46dce1f19d05" width="100%" height="600" frameborder="0" 	marginwidth="0" marginheight="0" allowfullscreen></iframe>
+	
+</section>
+<section>
+
+    <h3>Program for n kings:</h3>
+
+	<iframe src="https://trinket.io/embed/python/c4c31937344d" width="100%" height="600" frameborder="0" 	marginwidth="0" marginheight="0" allowfullscreen></iframe>
+	
+</section>
+<section>
+
+    <h3>Program for n knights:</h3>
+
+	<iframe src="https://trinket.io/embed/python/430e99e4667a" width="100%" height="600" frameborder="0" 	marginwidth="0" marginheight="0" allowfullscreen></iframe>
+	
+</section>
+<section>
+
+<h2><b>Explanation of the code for 3D chess</b></h2>
+    <p>
+		These pieces of code are again similar to the 2D ones, with the differences being creating an empty 8x8x8 chess board as well as assigning each piece a 3D co-ordinate and considering their movement in 3D in the arrangements function. and again each piece has the same code except the arrangement function. For each code it is the same layout as it was for the 2D pieces, except it has now been made on a 3 dimensional chess board and assigns each peice an (x, y, z) co-ordinate instead of an (x, y).
+    </p>
+
+    <p>
+		<b>Rooks:</b> Starting with the explanation of the code for n rooks: The only other change to the code is in the arrangement function, in which two rooks are challenging if two of the coordinates are the same since it can only move through one plane at once.
+    </p>
+    <p>
+		<b>Bishops:</b> The logic behind the movement of bishops is different as they can move diagonally whilst staying in one plane or move diagonally through all three. so the code accounts for the three situations when two rooks can reach each other by moving through just two planes or if it moves through all three.
+    </p>
+    <p>
+		<b>Queens:</b> Just like in 2D chess, the queen is just a combination of the rook and bishop and this does not change in 3d so the code just combines the conditions of a 3D rook and 3D bishop.
+    </p>
+    <p>
+		<b>Kings:</b> The king was a little tricker again and since this time in 3D it has 26 possible moves we didnt want to jsut write them all out, so we created a variable for the kings moves making it (a, b, c) where a, b and c can be any value from -1 to 1, and it cant be (0, 0, 0). This efficiently stores all of the kings possible moves in 3D chess. We then looked at the difference of two kings positions to determine if the difference was a part of the kings move set and if it was then it meant it was a challenging configuration. 
+    </p>
+    <p>
+		<b>Knights:</b> The knights were the trickiest again. We decided to list the only positive knight moves possible in 3D as there are only 6, we then checked if the absolute difference in any two knights positions was in the knights possible moves to then verify if it was challenging or not. We did it this way since we can use absolute values to eliminate the need to list any knight moves which have a -1 or -2 in which shortens the length of code.
+    </p>
+    <p>
+		All parts of the code are identical except the arrangement functions. It was made this way with 	functions so that when we made the code for new pieces it would be a very easy process.
+    </p>
+
+</section>
+<section>
+	<h2>Comparing the results of different pieces</h2>
+<body>
+    <main>
+    <p>
+		Similarly to 2D chess the predictions will be the same using the same logic. The king compared to knight logic is still applied as it stays true just for a 3D cube not a 2D square. However there is one change, since the way bishops can move through diagonals in 10 lines now whilst rooks can only move through 6 its predicted the bishop will have a lower percent of non challenging arrangements. The rook will also now have a much more similar arrangement to the king and knight, as it can always see 21 squares and a king can see somewhere between 7-26 depending where on the board it is. It now predicts the ascending order of non-challenging arrangements for each piece as: queen, bishop, rook, king, knight.
+    </p>
+
+    <p>
+				We ran the codes again for n being 2 to 8 to check if it stays consistent with different values of n. Then did another table for n = 3: 
+    </p>
+
+<table border="1">
+  <tr>
+    <th>Chess piece</th>
+    <th>n</th>
+    <th>non-challenging %</th>
+  </tr>
+  <tr>
+    <td>Rook</td>
+    <td>3</td>
+    <td>88.73%</td>
+  </tr>
+  <tr>
+    <td>Bishop</td>
+    <td>3</td>
+    <td>52.95%</td>
+  </tr>
+  <tr>
+    <td>Queen</td>
+    <td>3</td>
+    <td>50.74%</td>
+  </tr>
+  <tr>
+    <td>King</td>
+    <td>3</td>
+    <td>88.77%</td>
+  </tr>
+  <tr>
+    <td>Knight</td>
+    <td>3</td>
+    <td>92.06</td>
+  </tr>
+</table>
+
+    <p>
+		Again these resutls match the predictions, showing the logic of our code matches the logic of the chess pieces. The king and knight have very similar results even when a rook can move to 21 places and a king ranges from 7 to 26. This is because the majority of king moves is 26, if the king is anywhere except touching the edge of the board it can move in 26 ways. That is in $\frac{216}{512}$ places, where it is only 7 ways in $\frac{8}{512}$ places. The rest of the places have ways between 7 and 26 in which there are more towards 26. This is why the results for the rook and king are so similar, even when median of the range of the kings move is 17.5 and the rooks is 21.
+    </p>
+</body>
+</section>
+
+
+</html>
